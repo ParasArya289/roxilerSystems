@@ -1,6 +1,8 @@
 const axios = require("axios");
-const Transactions = require("../Models/transaction.model");
-const { createTransaction } = require("../Queries/transactions.queries");
+const {
+  createTransaction,
+  getTransactions,
+} = require("../Queries/transactions.queries");
 
 async function seedDataController(req, res) {
   const { url } = req.body;
@@ -23,4 +25,18 @@ async function seedDataController(req, res) {
     res.status(500).json({ error: `Error seeding data: ${error.message}` });
   }
 }
-module.exports = { seedDataController };
+async function getTransactionsController(req, res) {
+  const { search, page, limit } = req.query;
+
+  try {
+    const result = await getTransactions(
+      search,
+      parseInt(page) || 1,
+      parseInt(limit) || 10
+    );
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+module.exports = { seedDataController, getTransactionsController };
