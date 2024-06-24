@@ -54,7 +54,6 @@ const getTransactionStatistics = async (month) => {
   };
   try {
     const data = await Transactions.find(filter);
-    console.log(data);
     // if(!data){
     //   throw new Error("No statistics available for this month")
     // }
