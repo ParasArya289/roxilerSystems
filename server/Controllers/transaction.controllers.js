@@ -47,7 +47,7 @@ async function getTransactionStatisticsController(req, res) {
   const { month = 1 } = req.query;
   try {
     const statistics = await getTransactionStatistics(month);
-    res.status(200).json(statistics);
+    res.status(200).json({statistics});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -56,7 +56,7 @@ async function getBarChartDataController(req, res) {
   const { month = 1 } = req.query;
   try {
     const data = await getBarChartData(parseInt(month));
-    res.status(200).json(data);
+    res.status(200).json({barChartData:data});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -65,7 +65,7 @@ async function getPeiChartDataController(req, res) {
   const { month = 1 } = req.query;
   try {
     const data = await getPieChartData(parseInt(month));
-    res.status(200).json(data);
+    res.status(200).json({pieChartData:data});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
