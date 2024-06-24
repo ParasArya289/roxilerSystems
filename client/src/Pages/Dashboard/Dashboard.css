@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
 }
-.filterheader select {
+select {
   border: none;
   width: 6rem;
   padding: 0.5rem;

@@ -70,7 +70,6 @@ export const Dashboard = () => {
   useEffect(() => {
     fetch();
   }, [debouncedString, month,page]);
-  console.log(debouncedString);
 
   return (
     <Layout>
