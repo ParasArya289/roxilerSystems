@@ -47,7 +47,7 @@ async function getTransactionStatisticsController(req, res) {
   const { month = 1 } = req.query;
   try {
     const statistics = await getTransactionStatistics(month);
-    res.status(200).json({statistics});
+    res.status(200).json({ statistics });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -56,7 +56,7 @@ async function getBarChartDataController(req, res) {
   const { month = 1 } = req.query;
   try {
     const data = await getBarChartData(parseInt(month));
-    res.status(200).json({barChartData:data});
+    res.status(200).json({ barChartData: data });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -65,7 +65,24 @@ async function getPeiChartDataController(req, res) {
   const { month = 1 } = req.query;
   try {
     const data = await getPieChartData(parseInt(month));
-    res.status(200).json({pieChartData:data});
+    res.status(200).json({ pieChartData: data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+async function getCumulativeDataController(req, res) {
+  const API_BASE_URL = process.env.API_BASE_URL;
+
+  try {
+    const [res1, res2, res3] = await Promise.all([
+      axios.get(`${API_BASE_URL}/transactions/statistics`),
+      axios.get(`${API_BASE_URL}/transactions/bar-chart`),
+      axios.get(`${API_BASE_URL}/transactions/pie-chart`),
+    ]);
+    res.status(200).json({
+      message: "Fetched Cumulative data",
+      data: { ...res1.data, ...res2.data, ...res3.data },
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -76,4 +93,5 @@ module.exports = {
   getTransactionStatisticsController,
   getBarChartDataController,
   getPeiChartDataController,
+  getCumulativeDataController,
 };
