@@ -1,0 +1,51 @@
+.dashboard {
+  text-align: left;
+}
+.dashboard div {
+  margin: 0 auto;
+  width: 50%;
+}
+.filterheader {
+  display: flex;
+  justify-content: space-between;
+}
+.filterheader select {
+  border: none;
+  width: 6rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.snack-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.snack-table th,
+.snack-table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: clamp(0.5rem, 0.6vw, 2rem);
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+  }
+}
+
+.snack-table th {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 40px;
+  button {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
